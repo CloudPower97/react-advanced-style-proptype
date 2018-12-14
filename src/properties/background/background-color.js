@@ -1,9 +1,6 @@
 import { color } from '@cloudpower97/css-data-types'
+import { validationError } from '../../utils'
 
 export const backgroundColorRegex = new RegExp(color)
 
-export default (props, propName, componentName) => {
-  if (!backgroundColorRegex.test(props[propName])) {
-    return new Error(`Invalid prop \`${propName}\` supplied to ${componentName}.`)
-  }
-}
+export default validationError(backgroundColorRegex, 'background-color')

@@ -1,3 +1,4 @@
+import { validationError } from '../../utils'
 import { integer } from '@cloudpower97/css-data-types'
 
 const featureTagValue = new RegExp(
@@ -6,8 +7,4 @@ const featureTagValue = new RegExp(
 
 export const fontFeatureSettingsRegex = new RegExp(`(?:(^normal$)|${featureTagValue.source})`)
 
-export default (props, propName, componentName) => {
-  if (!fontFeatureSettingsRegex.test(props[propName])) {
-    return new Error(`Invalid prop \`${propName}\` supplied to ${componentName}.`)
-  }
-}
+export default validationError(fontFeatureSettingsRegex, 'font-feature-settings')

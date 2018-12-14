@@ -1,9 +1,5 @@
-import { lengthPercentage } from '../../utils'
+import { lengthPercentage, validationError } from '../../utils'
 
 export const rowGapRegex = new RegExp(`(?:normal|${lengthPercentage})`)
 
-export default (props, propName, componentName) => {
-  if (!rowGapRegex.test(props[propName])) {
-    return new Error(`Invalid prop \`${propName}\` supplied to ${componentName}.`)
-  }
-}
+export default validationError(rowGapRegex, 'row-gap')

@@ -3,6 +3,7 @@ import {
   contentDistribution,
   overflowPosition,
   contentPosition,
+  validationError,
 } from '../../utils'
 
 /**
@@ -14,8 +15,4 @@ export const justifyItemsRegex = new RegExp(
   `(?:normal|${baselinePosition}|${contentDistribution}|${overflowPosition}|${contentPosition}|${legacy})`
 )
 
-export default (props, propName, componentName) => {
-  if (!justifyItemsRegex.test(props[propName])) {
-    return new Error(`Invalid prop \`${propName}\` supplied to ${componentName}.`)
-  }
-}
+export default validationError(justifyItemsRegex, 'justify-items')
