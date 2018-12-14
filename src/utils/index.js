@@ -16,3 +16,13 @@ export const overflowPosition = '(?:unsafe|safe)'
 export const contentPosition = '(?:center|start|end|flex-start|flex-end)'
 
 export const lengthPercentage = `(?:${lengthReplace}|${percentageReplace})`
+
+export const validationError = (regex, propertyName) => (props, propName, componentName) => {
+  if (!regex.test(props[propName])) {
+    return new Error(
+      `Prop ${propName} passed to ${componentName} has invalid CSS property \`${propertyName}\` value of \`${
+        props[propName]
+      }\`\nRead more here: https://developer.mozilla.org/en-US/docs/Web/CSS/${propertyName}`
+    )
+  }
+}
